@@ -31,6 +31,7 @@
     "focus-trap-react": "11.0.4",
     "framer-motion": "12.23.24",
     "howler": "2.2.4",
+    "ogl": "1.0.11",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hotkeys-hook": "5.2.1",

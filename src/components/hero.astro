@@ -1,13 +1,12 @@
 ---
 import { Container } from './container';
-import { Silk } from './silk';
+import LightRays from './rays';
 ---
 
 <Container fullWidth>
   <div class="hero">
     <div class="effect">
-      <div class="silk"><Silk client:load color="#ffffff" /></div>
-      <div class="overlay"></div>
+      <LightRays client:load followMouse={false} />
     </div>
 
     <div class="logo">
@@ -24,7 +23,6 @@ import { Silk } from './silk';
     position: relative;
     padding: 100px 0 30px;
     margin-bottom: 20px;
-    overflow: hidden;
     text-align: center;
 
     & .effect {
@@ -34,63 +32,18 @@ import { Silk } from './silk';
       z-index: -1;
       width: 100%;
       height: 100%;
-      overflow: hidden;
-
-      &::before,
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 100;
-        width: 1px;
-        height: 100%;
-        content: '';
-        background: linear-gradient(
-          transparent,
-          var(--color-neutral-200),
-          transparent
-        );
-      }
-
-      &::after {
-        right: 0;
-        left: unset;
-      }
-
-      & .silk {
-        position: absolute;
-        inset: 0;
-        mask-image: linear-gradient(#000, transparent);
-      }
-
-      & .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgb(9 9 11 / 85%);
-      }
+      opacity: 0.6;
     }
 
     & .logo {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 50px;
-      height: 50px;
       margin: 0 auto;
-      margin-bottom: 12px;
-      background: linear-gradient(
-        var(--color-neutral-50),
-        var(--color-neutral-100)
-      );
-      border: 1px solid var(--color-neutral-200);
-      border-radius: 16px;
-      box-shadow: inset 0 -1px 0 var(--color-neutral-300);
+      margin-bottom: 20px;
 
       & img {
-        height: 28px;
+        height: 44px;
       }
     }
 
