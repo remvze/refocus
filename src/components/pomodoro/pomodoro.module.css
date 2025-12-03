@@ -100,6 +100,12 @@
       color: var(--color-foreground-subtle);
       background-color: var(--color-neutral-200);
       box-shadow: inset 0 -3px 0 var(--color-neutral-100);
+      transition: 0.2s;
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.4;
+      }
     }
   }
 }

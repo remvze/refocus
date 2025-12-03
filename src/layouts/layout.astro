@@ -10,9 +10,10 @@ interface Props {
   title?: string;
 }
 
-const title = Astro.props.title || 'Timesy: A Distraction-Free Online Timer';
+const title = Astro.props.title || 'Pomodor: A No-Bullshit Pomodoro Timer';
 const description =
-  Astro.props.description || `A Distraction-free Online Timer.`;
+  Astro.props.description ||
+  `A distraction-free pomodoro timer. Completely free, open-source, and self-hostable`;
 ---
 
 <!doctype html>
@@ -30,10 +31,10 @@ const description =
 
     <meta content={title} property="og:title" />
     <meta content={description} property="og:description" />
-    <meta content="Timesy" property="og:site_name" />
-    <meta content="https://timesy.mvze.net" property="og:url" />
+    <meta content="Pomoro" property="og:site_name" />
+    <meta content="https://pomoro.net" property="og:url" />
     <meta content="website" property="og:type" />
-    <meta content="https://timesy.mvze.net/og.png" property="og:image" />
+    <meta content="https://pomoro.net/og.png" property="og:image" />
 
     <meta content="summary_large_image" name="twitter:card" />
 

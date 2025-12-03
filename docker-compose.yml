@@ -1,6 +1,6 @@
 services:
-  timesy:
-    image: ghcr.io/remvze/timesy
+  pomoro:
+    image: ghcr.io/remvze/pomoro
     logging:
       options:
         max-size: 1g

@@ -2,14 +2,14 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import { IoRefresh, IoSettingsOutline } from 'react-icons/io5';
 
 import { useLocalStorage } from '@/hooks/use-local-storage';
-import { useAlarm } from '@/hooks/use-alarm';
+import { useSound } from '@/hooks/use-sound';
 import { Modal } from '../modal';
 
 import styles from './pomodoro.module.css';
 import { cn } from '@/helpers/styles';
 
 export function PomodoroTimer() {
-  const alarm = useAlarm();
+  const { play: playAlaram } = useSound('/sounds/alarm.mp3', 1);
 
   const [selectedTab, setSelectedTab] = useState('pomodoro');
   const [isRunning, setIsRunning] = useState(false);
@@ -27,7 +27,7 @@ export function PomodoroTimer() {
 
   const [showSettings, setShowSettings] = useState(false);
   const [times, setTimes] = useLocalStorage<Record<string, number>>(
-    'timesy-pomodoro-setting',
+    'pomoro:times',
     defaultTimes,
   );
 
@@ -64,7 +64,7 @@ export function PomodoroTimer() {
     if (timer <= 0 && isRunning && !completionHandled.current) {
       if (interval.current) clearInterval(interval.current);
 
-      alarm();
+      playAlaram();
 
       setIsRunning(false);
       setCompletions(prev => ({
@@ -76,7 +76,7 @@ export function PomodoroTimer() {
     } else if (timer > 0) {
       completionHandled.current = false;
     }
-  }, [timer, selectedTab, isRunning, alarm]);
+  }, [timer, selectedTab, isRunning, playAlaram]);
 
   useEffect(() => {
     const time = times[selectedTab] || 10;
@@ -110,10 +110,10 @@ export function PomodoroTimer() {
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
 
-    document.title = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} // Timesy`;
+    document.title = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} // Pomoro`;
 
     return () => {
-      document.title = 'Timesy: A Distraction-Free Online Timer';
+      document.title = 'Pomoro: A No-Bullshit Pomodoro Timer';
     };
   }, [timer]);
 
@@ -128,7 +128,11 @@ export function PomodoroTimer() {
             <button className={styles.play} onClick={toggleRunning}>
               {isRunning ? 'Pause' : 'Play'}
             </button>
-            <button className={styles.reset} onClick={restart}>
+            <button
+              className={styles.reset}
+              disabled={times[selectedTab] === timer}
+              onClick={restart}
+            >
               <IoRefresh />
             </button>
             <button
