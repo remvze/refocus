@@ -1,6 +1,6 @@
 services:
-  pomoro:
-    image: ghcr.io/remvze/pomoro
+  refocus:
+    image: ghcr.io/remvze/refocus
     logging:
       options:
         max-size: 1g

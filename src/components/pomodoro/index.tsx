@@ -27,7 +27,7 @@ export function PomodoroTimer() {
 
   const [showSettings, setShowSettings] = useState(false);
   const [times, setTimes] = useLocalStorage<Record<string, number>>(
-    'pomoro:times',
+    'refocus:times',
     defaultTimes,
   );
 
@@ -110,10 +110,10 @@ export function PomodoroTimer() {
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
 
-    document.title = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} // Pomoro`;
+    document.title = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} // Refocus`;
 
     return () => {
-      document.title = 'Pomoro: A No-Bullshit Pomodoro Timer';
+      document.title = 'Refocus: A No-Bullshit Pomodoro Timer';
     };
   }, [timer]);
 
